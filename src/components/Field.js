@@ -6,7 +6,10 @@ import {
 export default function({ field, value, onChange, required = true }) {
 	return (	
 		<label key={field.name} style={{ display: 'block' }}>
-			<div>{field.label}*</div>
+			<div>
+				{field.label}
+				{required && '*'}
+			</div>
 			<Input
 				type={field.type || 'text'}
 				name={field.name}

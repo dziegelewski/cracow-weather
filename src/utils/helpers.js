@@ -8,3 +8,5 @@ export function toObjectOfEmptyStrings(arr) {
 export const getName = value => value.name;
 
 export const hasSomeEmptyValues = data => Object.values(data).some(value => !value);
+
+export const validateEmail = str =>  /(.+)@(.+){2,}\.(.+){2,}/.test(str);

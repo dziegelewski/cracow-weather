@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 import * as actions from '@/actions';
-import { hasSomeEmptyValues } from '@/utils/helpers';
+import { hasSomeEmptyValues, validateEmail } from '@/utils/helpers';
 
 import Form from '@/components/Form';
 import { Heading } from '@/styled';
@@ -37,6 +37,13 @@ class Registration extends Component {
 			};
 		}
 
+		if (!validateEmail(fields.email)) {
+			return {
+				success: false,
+				errorMessage: 'Podany email jest nieprawidłowy.',
+			};
+		}
+
 		if (fields.password !== fields.passwordRepeated) {
 			return {
 				success: false,
@@ -67,6 +74,8 @@ class Registration extends Component {
 					validationMethod={this.formValidation}
 					onCompleted={this.onFormCompleted}
 				/>
+
+				<p>Masz już konto? <Link to="/logowanie">Zaloguj się</Link>.</p>
 			</div>
 		)
 	}

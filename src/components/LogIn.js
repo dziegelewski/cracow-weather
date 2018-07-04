@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 import * as actions from '@/actions';
 import getUserByCredentials from '@/utils/getUserByCredentials';
@@ -50,6 +50,8 @@ class LogIn extends Component {
 					validationMethod={this.formValidation}
 					onCompleted={this.onFormCompleted}
 				/>
+
+				<p>Nie masz konta? <Link to="/rejestracja">Zarejestruj się</Link>.</p>
 			</div>
 		)
 	}
