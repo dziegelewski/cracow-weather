@@ -1,3 +1,4 @@
+const path = require('path');
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 
@@ -24,8 +25,21 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         loader: "babel-loader"
+      },
+       {
+        test: /\.css$/,
+        use: ["style-loader", "css-loader"]
       }
+
     ]
+  },
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+    }
+  },
+  devServer: {
+    historyApiFallback: true
   },
   plugins: [
     htmlPlugin,
