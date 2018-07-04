@@ -1,83 +1,56 @@
 import React, { Component } from 'react';
-import {
-	Submit,
-	Error,
-	Heading,
-} from '@/styled';
-import * as actions from '@/actions';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { toObjectOfEmptyStrings, getName } from '@/utils/helpers';
+
+import * as actions from '@/actions';
 import getUserByCredentials from '@/utils/getUserByCredentials';
 
-import Field from '@/components/Field';
-
-
-const fields = [
-	{ name: 'email', label: 'Email'},
-	{ name: 'password', label: 'Hasło'},
-];
+import Form from '@/components/Form';
+import { Heading } from '@/styled';
 
 class LogIn extends Component {
-	constructor(props) {
-		super(props);
-		this.state = toObjectOfEmptyStrings(
-			fields.map(getName)
-		);
-	}
 
-	onSubmit = (e) => {
-		e.preventDefault();
+	formFields = [
+		{ name: 'email', label: 'Email'},
+		{ name: 'password', label: 'Hasło'},
+	];
+
+	formValidation = ({ email, password }) => {
 		const loggedUser = getUserByCredentials(
-			{
-				email: this.state.email,
-				password: this.state.password,
-			},
+			{	email, password	},
 			this.props.users
 		);
 
 		if (loggedUser) {
-			this.onLogged(loggedUser);
+			return {
+				success: true,
+				data: loggedUser, 
+			}
 		} else {
-			this.showError('Niepoprawne email lub hasło.');
+			return {
+				success: false,
+				errorMessage: 'Niepoprawne email lub hasło'
+			}
 		}
 	}
 
-	handleInputChange = e => this.setState({
-		[e.target.name]: e.target.value
-	})
-
-	onLogged(loggedUser) {
+	onFormCompleted = loggedUser => {
 		this.props.userLoggedIn(loggedUser.id);
 		this.props.history.push('/dashboard');
-	}
+	};
 
-	showError(errorMessage) {
-		this.setState({
-			error: errorMessage,
-		})
-	}
 
 	render() {
 		return (
-			<form onSubmit={this.onSubmit}>
+			<div>	
 				<Heading>Logowanie</Heading>
-
-				{this.state.error && (
-					<Error>{this.state.error}</Error>
-				)}
-
-				{fields.map(field => (
-					<Field
-						key={field.name}
-						field={field}
-						value={this.state[field.name]}
-						onChange={this.handleInputChange}
-					/>
-				))}
-
-				<Submit>Zaloguj</Submit>
-			</form>
+				<Form
+					fields={this.formFields}
+					submitText="Zaloguj"
+					validationMethod={this.formValidation}
+					onCompleted={this.onFormCompleted}
+				/>
+			</div>
 		)
 	}
 }
