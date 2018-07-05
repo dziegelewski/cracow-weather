@@ -31,7 +31,7 @@ class Dashboard extends Component {
 			<div>
 				<Title>Dashboard</Title>
 				<p>
-					Witaj, {loggedUser.name}	<a
+					Witaj, {loggedUser.fname}	<a
 						onClick={this.handleLogOutClick}
 						href="#"
 					>

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 
 import * as actions from '@/actions';
-import { hasSomeEmptyValues, validateEmail } from '@/utils/helpers';
+import { hasSomeEmptyValues, validateEmail, objectWithoutKey } from '@/utils/helpers';
 
 import Form from '@/components/Form';
 import Title from '@/components/Title';
@@ -11,7 +11,7 @@ import Title from '@/components/Title';
 class Registration extends Component {
 
 	formFields = [
-		{ name: 'name', label: 'Imię'},
+		{ name: 'fname', label: 'Imię'},
 		{ name: 'surname', label: 'Nazwisko'},
 		{ name: 'email', label: 'Email'},
 		{ name: 'phone', label: 'Telefon'},
@@ -21,11 +21,13 @@ class Registration extends Component {
 			name: 'password',
 			label: 'Hasło',
 			type: 'password',
+			autocomplete: 'new-password',
 		},
 		{
 			name: 'passwordRepeated',
 			label: 'Powtórz hasło',
 			type: 'password',
+			autocomplete: 'new-password',
 		},
 	];
 
@@ -53,7 +55,7 @@ class Registration extends Component {
 
 		return {
 			success: true,
-			data: fields,
+			data: objectWithoutKey(fields, 'passwordRepeated'),
 		};
 	};
 

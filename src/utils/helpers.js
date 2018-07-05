@@ -14,3 +14,8 @@ export const validateEmail = str =>  /(.+)@(.+){2,}\.(.+){2,}/.test(str);
 export const takeOnly = numberOfItems => arr => arr.slice(0, numberOfItems);
 
 export const parseHourForHuman = x => new Date(x).getHours() + ':00';
+
+export const objectWithoutKey = (object, keyName) => {
+  delete object[keyName]
+  return object;
+};

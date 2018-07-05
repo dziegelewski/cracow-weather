@@ -1,5 +1,5 @@
 export default {
-	name: 'Admin',
+	fname: 'Admin',
 	surname: 'Nowak',
 	email: 'admin@admin.pl',
 	password: 'admin',

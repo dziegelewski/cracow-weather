@@ -20,7 +20,7 @@ export default function({ weather }) {
 	return (
 		<SlideEffect>
 
-			<p><strong>Oto pogoda na najbliższe godziny w Krakowie</strong></p>
+			<p><strong>Oto pogoda na najbliższe godziny w Krakowie.</strong></p>
 
 			<TempChart weather={weather} />
 			<HumidityChart weather={weather} />

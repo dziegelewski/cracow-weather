@@ -20,16 +20,16 @@ export default function({ weather }) {
 
 	return (
 		<HorizontalScroll>
-			<p>Temperatura:</p>
+			<p>Temperatura (°C):</p>
 
 			<LineChart 
 				data={data}
 				width={600}
         height={400}
-        yLabel="Temperatura (°C)"
         xParser={x => new Date(x).getTime()}
         xDisplay={parseHourForHuman}
         hideXLabel
+        hideYLabel
       />
 		
 		</HorizontalScroll>	

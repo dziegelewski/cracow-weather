@@ -17,7 +17,7 @@ export default function({ weather }) {
 
 	return (
 		<HorizontalScroll>
-      <p>Wilgotność (g/m3):</p>
+      <p>Wilgotność (%):</p>
 
       <BarChart
 				data={data}
@@ -27,7 +27,7 @@ export default function({ weather }) {
 					bottom: 30,
 					left: 30,
 					right: 30,
-					top: 0,
+					top: 30,
 				}}
       />
 		</HorizontalScroll>

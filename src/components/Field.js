@@ -15,6 +15,7 @@ export default function({ field, value, onChange, required = true }) {
 				value={value}
 				onChange={onChange}
 				required={required}
+				autoComplete={field.autocomplete || null}
 			/>	
 		</label>
 	)

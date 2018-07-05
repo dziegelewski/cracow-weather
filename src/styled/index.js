@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 const color = {
-	text: '#333',
-	special: '#FFF',
+	dark: '#222',
+	plain: '#FFF',
 	error: '#A00',
 }
 
@@ -12,7 +12,7 @@ export const Wrapper = styled.div`
 	margin: 0 auto;
 	width: 100%;
 	max-width: ${pageWidth}px;
-	color: #333;
+	color: ${color.dark};
 	font-family: DejaVu Serif;
 
 	* {
@@ -28,7 +28,7 @@ export const Heading = styled.h1`
 export const Input = styled.input`
 	width: 100%;
 	max-width: 300px;
-	border: 1px solid ${color.text};
+	border: 1px solid ${color.dark};
 	background: none;
 	margin: 10px 0;
 	padding: 5px 10px;
@@ -52,7 +52,7 @@ export const Submit = Input.withComponent('button').extend.attrs({
 		left: 0;
 		width: 100%;
 		height: 0;
-		background: black;
+		background: ${color.dark};
 		transition: height .1s;
 
 		z-index: -1;
@@ -60,7 +60,7 @@ export const Submit = Input.withComponent('button').extend.attrs({
 
 	&:hover,
 	&:active {
-		color: white;
+		color: ${color.plain};
 		&:before {
 			height: 45px;
 		}
@@ -85,16 +85,16 @@ export const Spinner = styled.div`
     height: calc(var(--size) * 0.7);
     margin: 1px;
     border-radius: 50%;
-    border: 5px solid #000;
-    border-color: #000 transparent #000 transparent;
+    border: 5px solid${color.dark};
+    border-color:${color.dark} transparent${color.dark} transparent;
     animation: lds-dual-ring 1.2s linear infinite;
   }
 
   @keyframes lds-dual-ring {
-    0% {
+    from {
       transform: rotate(0deg);
     }
-    100% {
+    to {
       transform: rotate(360deg);
     }
   }
@@ -102,9 +102,9 @@ export const Spinner = styled.div`
 
 export const SlideEffect = styled.div`
 	overflow: hidden;
-	animation: slideIn .35s 1;
+	animation: slide-in .35s 1;
 
-	@keyframes slideIn {
+	@keyframes slide-in {
 		from {
 			transform: translateY(500px);
 			opacity: 0.1;
