@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-	Input
-} from '@/styled';
+import { Input } from '@/styled';
 
 export default function({ field, value, onChange, required = true }) {
 	return (	

@@ -10,3 +10,7 @@ export const getName = value => value.name;
 export const hasSomeEmptyValues = data => Object.values(data).some(value => !value);
 
 export const validateEmail = str =>  /(.+)@(.+){2,}\.(.+){2,}/.test(str);
+
+export const takeOnly = numberOfItems => arr => arr.slice(0, numberOfItems);
+
+export const parseHourForHuman = x => new Date(x).getHours() + ':00';

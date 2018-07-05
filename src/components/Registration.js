@@ -6,7 +6,7 @@ import * as actions from '@/actions';
 import { hasSomeEmptyValues, validateEmail } from '@/utils/helpers';
 
 import Form from '@/components/Form';
-import { Heading } from '@/styled';
+import Title from '@/components/Title';
 
 class Registration extends Component {
 
@@ -65,7 +65,7 @@ class Registration extends Component {
 	render() {
 		return (
 			<div>
-				<Heading>Rejestracja</Heading>
+				<Title>Rejestracja</Title>
 				<p>Podaj swoje dane</p>
 
 				<Form

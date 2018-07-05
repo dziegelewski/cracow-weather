@@ -1,55 +1,30 @@
 import React from 'react';
-import LineChart from 'react-linechart';
-import BarChart from 'react-bar-chart';
-import Preloader from '@/styled/Preloader';
+
+import Loading from '@/components/Loading';
+import HumidityChart from '@/components/HumidityChart';
+import TempChart from '@/components/TempChart';
+
+import { SlideEffect } from '@/styled';
+
 
 export default function({ weather } = {}) {
 
 	if (!weather) {
 		return (
-			<div>
-				<Preloader />
-			</div>
+			<Loading>
+				Ładuję pogodę...
+			</Loading>
 		)
 	}
 
-	const temp = weather.list.map((day, index) => {
-		return {
-			x: index,
-			y: day.main.temp
-		}
-	});
-
-	const lineChartData = [{
-		color: "steelblue", 
-    points: temp,
-	}];
-
-	const barChartData = weather.list.map((day, index) => {
-		return {
-			value: day.main.humidity,
-			text: index,
-		}
-	})
-
 	return (
-		<div>
-			<p>Temperatura</p>
+		<SlideEffect>
 
-			<LineChart 
-					data={lineChartData}
-					width={600}
-          height={400}
-      />
+			<p><strong>Oto pogoda na najbliższe godziny w Krakowie:</strong></p>
 
-      <p>Wilgotność</p>
+			<TempChart weather={weather} />
+			<HumidityChart weather={weather} />
 
-      <BarChart
-				data={barChartData}
-				ylabel='g/m3'
-				width={600}
-				height={300}
-      />
-		</div>
+		</SlideEffect>
 	)
 }

@@ -1,39 +1,48 @@
 import React, { Component } from 'react';
-import WeatherCharts from '@/components/WeatherCharts';
-import { Heading } from '@/styled';
 import * as actions from '@/actions';
 import { connect } from 'react-redux';
 import { getLoggedUser } from '@/selectors';
 import { withRouter } from 'react-router-dom';
 
+import WeatherCharts from '@/components/WeatherCharts';
+import Title from '@/components/Title';
+
 
 class Dashboard extends Component {
 
-	render() {
-		const userName = this.props.loggedUser && this.props.loggedUser.name; 
-
-		return (
-			<div>
-			<Heading>Dashboard</Heading>
-			<p>
-				Witaj, {userName}	<a
-					onClick={this.handleLogOutClick}
-					href="#">[wyloguj]
-				</a>
-			</p>
-			<WeatherCharts weather={this.props.weather}/>
-			</div>
-		)
+	componentWillMount() {
+		this.props.fetchWeather();
 	}
 
 	handleLogOutClick = (e) => {
 		e.preventDefault();
 		this.props.userLoggedOut();
 		this.props.history.push('/');
-	}
+	};
 
-	componentWillMount() {
-		this.props.fetchWeather();
+	render() {
+
+		const { loggedUser, weather } = this.props; 
+
+		if (!loggedUser) {
+			this.props.history.push('/logowanie');
+			return null;
+		}
+
+		return (
+			<div>
+				<Title>Dashboard</Title>
+				<p>
+					Witaj, {loggedUser.name}	<a
+						onClick={this.handleLogOutClick}
+						href="#"
+					>
+					[wyloguj]
+					</a>
+				</p>
+				<WeatherCharts weather={weather} />
+			</div>
+		)
 	}
 }
 

@@ -6,13 +6,20 @@ import * as actions from '@/actions';
 import getUserByCredentials from '@/utils/getUserByCredentials';
 
 import Form from '@/components/Form';
-import { Heading } from '@/styled';
+import Title from '@/components/Title';
 
 class LogIn extends Component {
 
 	formFields = [
-		{ name: 'email', label: 'Email'},
-		{ name: 'password', label: 'Hasło'},
+		{
+			name: 'email',
+			label: 'Email',
+		},
+		{
+			name: 'password',
+			label: 'Hasło',
+			type: 'password',
+		},
 	];
 
 	formValidation = ({ email, password }) => {
@@ -25,25 +32,24 @@ class LogIn extends Component {
 			return {
 				success: true,
 				data: loggedUser, 
-			}
+			};
 		} else {
 			return {
 				success: false,
-				errorMessage: 'Niepoprawne email lub hasło'
-			}
+				errorMessage: 'Niepoprawne email lub hasło.',
+			};
 		}
-	}
+	};
 
 	onFormCompleted = loggedUser => {
 		this.props.userLoggedIn(loggedUser.id);
 		this.props.history.push('/dashboard');
 	};
 
-
 	render() {
 		return (
 			<div>	
-				<Heading>Logowanie</Heading>
+				<Title>Logowanie</Title>
 				<Form
 					fields={this.formFields}
 					submitText="Zaloguj"

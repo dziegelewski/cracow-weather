@@ -9,8 +9,9 @@ const color = {
 export const Wrapper = styled.div`
 	margin: 0 auto;
 	width: 100%;
-	max-width: 600px;
+	max-width: 800px;
 	color: #333;
+	font-family: DejaVu Serif;
 
 	* {
 		box-sizing: border-box;
@@ -23,7 +24,8 @@ export const Heading = styled.h1`
 `
 
 export const Input = styled.input`
-	width: 300px;
+	width: 100%;
+	max-width: 300px;
 	border: 1px solid ${color.text};
 	background: none;
 	margin: 10px 0;
@@ -61,10 +63,59 @@ export const Submit = Input.withComponent('button').extend.attrs({
 			height: 45px;
 		}
 	}
-
-
 `;
 
 export const Error = styled.p`
 	color: ${color.error};
 `
+
+export const Spinner = styled.div`
+	--size: ${props => props.size || '90px'};
+
+  display: inline-block;
+  width: var(--size);
+  height: var(--size);
+
+  &:after {
+    content: " ";
+    display: block;
+    width: calc(var(--size) * 0.7);
+    height: calc(var(--size) * 0.7);
+    margin: 1px;
+    border-radius: 50%;
+    border: 5px solid #000;
+    border-color: #000 transparent #000 transparent;
+    animation: lds-dual-ring 1.2s linear infinite;
+  }
+
+  @keyframes lds-dual-ring {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+`;
+
+export const SlideEffect = styled.div`
+	overflow: hidden;
+	animation: slideIn .35s 1;
+
+	@keyframes slideIn {
+		from {
+			transform: translateY(500px);
+			opacity: 0.1;
+		}
+		to {
+			transform: translateX(0);
+			opacity: 1;
+		}
+	}
+`;
+
+export const HorizontalScroll = styled.div`
+	max-width: 100%;
+	overflow-x: auto;
+	padding-bottom: 20px;
+`;
