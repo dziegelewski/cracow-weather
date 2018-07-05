@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import * as actions from '@/actions';
 import { connect } from 'react-redux';
 import { getLoggedUser } from '@/selectors';
-import { withRouter } from 'react-router-dom';
+import { Redirect, withRouter } from 'react-router-dom';
 
 import WeatherCharts from '@/components/WeatherCharts';
 import Title from '@/components/Title';
@@ -21,12 +21,10 @@ class Dashboard extends Component {
 	};
 
 	render() {
-
-		const { loggedUser, weather } = this.props; 
+		const { loggedUser, weather } = this.props;
 
 		if (!loggedUser) {
-			this.props.history.push('/logowanie');
-			return null;
+			return <Redirect to="/logowanie" /> 
 		}
 
 		return (

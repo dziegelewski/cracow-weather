@@ -6,6 +6,6 @@ const getLoggedUserId = state => state.loggedUser;
 export const getLoggedUser = createSelector(
 	[getUsers, getLoggedUserId],
 	(users, loggedUserId) => {
-		return users.find(user => user.id === loggedUserId) || {};
+		return users.find(user => user.id === loggedUserId) || null;
 	}
 );

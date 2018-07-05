@@ -7,7 +7,7 @@ import TempChart from '@/components/TempChart';
 import { SlideEffect } from '@/styled';
 
 
-export default function({ weather } = {}) {
+export default function({ weather }) {
 
 	if (!weather) {
 		return (
@@ -20,7 +20,7 @@ export default function({ weather } = {}) {
 	return (
 		<SlideEffect>
 
-			<p><strong>Oto pogoda na najbliższe godziny w Krakowie:</strong></p>
+			<p><strong>Oto pogoda na najbliższe godziny w Krakowie</strong></p>
 
 			<TempChart weather={weather} />
 			<HumidityChart weather={weather} />

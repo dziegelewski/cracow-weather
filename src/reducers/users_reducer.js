@@ -1,8 +1,9 @@
+import exampleUser from '@/utils/exampleUser';
 import { REGISTER_AN_USER } from '@/actions';
-let userId = 0;
+let userId = 1;
 
 
-export default function(state = [], action) {
+export default function(state = [exampleUser], action) {
 	switch (action.type) {
 		default:
 			return state;

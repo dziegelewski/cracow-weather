@@ -9,7 +9,7 @@ import { HorizontalScroll } from '@/styled';
 export default function({ weather }) {
 
 	const data = [{
-		color: "orange", 
+		color: "black", 
     points:  weather.map(record => {
 			return {
 				x: record.dt_txt,
@@ -20,17 +20,16 @@ export default function({ weather }) {
 
 	return (
 		<HorizontalScroll>
-			<p>Temperatura</p>
+			<p>Temperatura:</p>
 
 			<LineChart 
-					data={data}
-					width={800}
-          height={400}
-          yLabel="Temperatura (°C)"
-          xLabel="Godzina"
-          xParser={x => new Date(x).getTime()}
-          xDisplay={parseHourForHuman}
-
+				data={data}
+				width={600}
+        height={400}
+        yLabel="Temperatura (°C)"
+        xParser={x => new Date(x).getTime()}
+        xDisplay={parseHourForHuman}
+        hideXLabel
       />
 		
 		</HorizontalScroll>	

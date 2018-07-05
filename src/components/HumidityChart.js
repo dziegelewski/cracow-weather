@@ -8,27 +8,26 @@ import { HorizontalScroll } from '@/styled';
 
 export default function({ weather }) {
 
-	const barChartData = weather.map(record => {
+	const data = weather.map(record => {
 		return {
 			value: record.main.humidity,
 			text: parseHourForHuman(record.dt_txt),
 		}
-	})
+	});
 
 	return (
 		<HorizontalScroll>
-      <p>Wilgotność</p>
+      <p>Wilgotność (g/m3):</p>
 
       <BarChart
-				data={barChartData}
-				ylabel='g/m3'
-				width={800}
+				data={data}
+				width={600}
 				height={300}
 				margin={{
-					top: 50,
-					bottom: 50,
+					bottom: 30,
 					left: 30,
 					right: 30,
+					top: 0,
 				}}
       />
 		</HorizontalScroll>

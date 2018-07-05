@@ -8,5 +8,5 @@ export default function() {
 		`http://api.openweathermap.org/data/2.5/forecast?q=Krakow,pl&mode=json&appid=${API_KEY}&units=metric`		
 	)
 		.then(data => data.data.list)
-		.then(takeOnly(10))
+		.then(takeOnly(8))
 }

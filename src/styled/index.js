@@ -6,10 +6,12 @@ const color = {
 	error: '#A00',
 }
 
+const pageWidth = 600;
+
 export const Wrapper = styled.div`
 	margin: 0 auto;
 	width: 100%;
-	max-width: 800px;
+	max-width: ${pageWidth}px;
 	color: #333;
 	font-family: DejaVu Serif;
 
